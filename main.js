@@ -8,6 +8,7 @@ let chanceArea = document.getElementById("chance.area")
 let chances = 5
 let gameOver = false
 let history = []
+let historyArea = document.getElementById("history.area")
 
 playButton.addEventListener("click",play)
 resetButton.addEventListener("click",reset)
@@ -44,12 +45,20 @@ function play(){
     } else{
         resultText.textContent="Great Job!"
         resultImg.src="https://cdn.vectorstock.com/i/500p/13/35/great-job-badge-high-quality-vector-42891335.jpg"
+        gameOver = true
+        playButton.disabled=true
     }
 
     history.push(userValue)
+    historyArea.textContent = `입력한 숫자 : ${history}`
     console.log(history)
 
-    if(chances < 1){
+    if(chances < 1 && computerNum == userValue){
+        resultText.textContent="Great Job!"
+        resultImg.src="https://cdn.vectorstock.com/i/500p/13/35/great-job-badge-high-quality-vector-42891335.jpg"
+        gameOver = true
+        playButton.disabled=true
+    } else if(chances < 1 && computerNum != userValue){
         gameOver = true
         resultText.textContent=`정답: ${computerNum}`
         resultImg.src="https://media.istockphoto.com/id/1325433246/video/game-over-text-animation-with-alpha-channel-4k.jpg?s=640x640&k=20&c=aZM_cNmjuXVVkLm12evzXTU0qFhAu3Vh2_2W_h-eq3c="
@@ -71,6 +80,7 @@ function reset(){
     history.splice(0,5)
     gameOver=false
     playButton.disabled = false
+    historyArea.textContent="입력한 숫자"
 }
 
 pickRandomNum()
