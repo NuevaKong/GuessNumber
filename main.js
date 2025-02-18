@@ -5,7 +5,7 @@ let resultText = document.getElementById("result.text")
 let resultImg = document.querySelector(".result-img")
 let resetButton = document.getElementById("reset.button")
 let chanceArea = document.getElementById("chance.area")
-let chances = 3
+let chances = 5
 let gameOver = false
 let history = []
 
@@ -51,7 +51,7 @@ function play(){
 
     if(chances < 1){
         gameOver = true
-        resultText.textContent="GAME OVER"
+        resultText.textContent=`정답: ${computerNum}`
         resultImg.src="https://media.istockphoto.com/id/1325433246/video/game-over-text-animation-with-alpha-channel-4k.jpg?s=640x640&k=20&c=aZM_cNmjuXVVkLm12evzXTU0qFhAu3Vh2_2W_h-eq3c="
     }
 
@@ -64,11 +64,11 @@ function play(){
 function reset(){
     userInput.value =""
     pickRandomNum()
-    chances = 3
+    chances = 5
     chanceArea.textContent=`남은 기회: ${chances}번`
     resultText.textContent="GUESS NUMBER"
     resultImg.src="https://play-lh.googleusercontent.com/a5o-1XpGKXZxUCDtpKmLA8rVzobdF9BcNKpZI1ij4nOjqLVnIx_QFd_4mbF__NuOAS2Y"
-    history.splice(0,3)
+    history.splice(0,5)
     gameOver=false
     playButton.disabled = false
 }
